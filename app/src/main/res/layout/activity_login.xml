@@ -25,7 +25,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/captionView"
         android:layout_width="264dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

@@ -26,7 +26,7 @@ class QueryTask extends AsyncTask<URL, Integer, Long> {
 
     @Override
     protected Long doInBackground(URL... urls) {
-        final TextView txt = (TextView) login.findViewById(R.id.textView);
+        final TextView txt = (TextView) login.findViewById(R.id.captionView);
         try {
             text = getFoodID("carrot");
         } catch (IOException e) {
