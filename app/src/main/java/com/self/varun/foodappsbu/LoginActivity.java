@@ -15,4 +15,8 @@ public class LoginActivity extends AppCompatActivity {
         EditText passtxt = (EditText)findViewById(R.id.pwdTxt);
         Button loginBtn = (Button) findViewById(R.id.btnLogin);
     }
+
+//    if(login){
+//        app.setscreen(new MainActivity());
+//    }
 }
