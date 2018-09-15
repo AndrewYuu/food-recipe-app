@@ -2,8 +2,14 @@ package com.self.varun.foodappsbu;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,39 +27,28 @@ public class LoginActivity extends AppCompatActivity {
         EditText usertxt = (EditText)findViewById(R.id.usrTxt);
         EditText passtxt = (EditText)findViewById(R.id.pwdTxt);
         Button loginBtn = (Button) findViewById(R.id.btnLogin);
-        try {
-
-            URL url = new URL("https://api.nal.usda.gov/ndb/V2/reports?ndbno=01009&type=f&format=json&api_key=DEMO_KEY");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("Accept", "application/json");
-
-            if (conn.getResponseCode() != 200) {
-                throw new RuntimeException("Failed : HTTP error code : "
-                        + conn.getResponseCode());
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    URL myURL = new URL("http://example.com/");
+                    new QueryTask().execute(myURL);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
             }
+        });
 
-            BufferedReader br = new BufferedReader(new InputStreamReader(
-                    (conn.getInputStream())));
 
-            String output;
-            System.out.println("Output from Server .... \n");
-            while ((output = br.readLine()) != null) {
-                System.out.println(output);
-            }
-
-            conn.disconnect();
-
-        } catch (MalformedURLException e) {
-
-            e.printStackTrace();
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
-
-        }
     }
 
-
+    public static String getFoodID(String query) throws IOException {
+        String url = "https://ndb.nal.usda.gov/ndb/search/list?qlookup=" + query;
+        Document doc = Jsoup.connect(url).userAgent("Jsoup client").timeout(500000).get();
+        Element div = doc.selectFirst("div[class=list-left]");
+        Element td = div.select("td").get(1);
+        Element a = td.selectFirst("a");
+        String text = a.text();
+        return text;
+    }
 }
