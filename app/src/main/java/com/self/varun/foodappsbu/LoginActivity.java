@@ -18,9 +18,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        EditText usertxt = (EditText)findViewById(R.id.usrTxt);
-        EditText passtxt = (EditText)findViewById(R.id.pwdTxt);
-        Button loginBtn = (Button) findViewById(R.id.btnLogin);
+        Button loginBtn = (Button) findViewById(R.id.push_button);
         try {
 
             URL url = new URL("https://api.nal.usda.gov/ndb/V2/reports?ndbno=01009&type=f&format=json&api_key=DEMO_KEY");
