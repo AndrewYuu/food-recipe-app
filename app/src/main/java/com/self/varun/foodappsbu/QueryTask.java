@@ -2,6 +2,7 @@ package com.self.varun.foodappsbu;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.jsoup.Jsoup;
@@ -14,6 +15,7 @@ import java.net.URL;
 
 class QueryTask extends AsyncTask<URL, Integer, Long> {
     LoginActivity login;
+    String text;
 
     public QueryTask(LoginActivity context)
     {
@@ -24,12 +26,26 @@ class QueryTask extends AsyncTask<URL, Integer, Long> {
 
     @Override
     protected Long doInBackground(URL... urls) {
+        final TextView txt = (TextView) login.findViewById(R.id.textView);
         try {
-          login.usertxt.setText(getFoodID("carrot"));
+            text = getFoodID("carrot");
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        login.runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+
+                // Stuff that updates the UI
+                txt.setText(text);
+
+            }
+        });
+
         return Long.valueOf(1);
+
     }
 
     protected void onPostExecute(Long result) {

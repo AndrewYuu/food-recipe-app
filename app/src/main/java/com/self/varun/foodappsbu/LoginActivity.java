@@ -24,15 +24,14 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        EditText usertxt = (EditText)findViewById(R.id.usrTxt);
-        EditText passtxt = (EditText)findViewById(R.id.pwdTxt);
-        Button loginBtn = (Button) findViewById(R.id.btnLogin);
+
+       Button loginBtn = (Button) findViewById(R.id.push_button) ;
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
                     URL myURL = new URL("http://example.com/");
-                    new QueryTask().execute(myURL);
+                    new QueryTask(LoginActivity.this).execute(myURL);
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
