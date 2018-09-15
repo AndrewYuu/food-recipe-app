@@ -1,5 +1,6 @@
 package com.self.varun.foodappsbu;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -12,15 +13,19 @@ import java.io.IOException;
 import java.net.URL;
 
 class QueryTask extends AsyncTask<URL, Integer, Long> {
+    LoginActivity login;
 
-
+    public QueryTask(LoginActivity context)
+    {
+     this.login = context;
+    }
     protected void onProgressUpdate(Integer... progress) {
     }
 
     @Override
     protected Long doInBackground(URL... urls) {
         try {
-            System.out.print(getFoodID("carrot"));
+          login.usertxt.setText(getFoodID("carrot"));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,7 +1,9 @@
 package com.self.varun.foodappsbu;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,20 +21,21 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class LoginActivity extends AppCompatActivity {
-
+    Button loginBtn;
+    EditText usertxt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        EditText usertxt = (EditText)findViewById(R.id.usrTxt);
+        usertxt = (EditText)findViewById(R.id.usrTxt);
         EditText passtxt = (EditText)findViewById(R.id.pwdTxt);
-        Button loginBtn = (Button) findViewById(R.id.btnLogin);
+         loginBtn = (Button) findViewById(R.id.btnLogin);
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
                     URL myURL = new URL("http://example.com/");
-                    new QueryTask().execute(myURL);
+                    new QueryTask(LoginActivity.this).execute(myURL);
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
@@ -50,5 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         Element a = td.selectFirst("a");
         String text = a.text();
         return text;
+    }
+    public  void getNBID(String s){
     }
 }
