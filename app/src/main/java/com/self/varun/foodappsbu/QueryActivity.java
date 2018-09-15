@@ -2,25 +2,21 @@ package com.self.varun.foodappsbu;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 
-public class LoginActivity extends AppCompatActivity {
+public class QueryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        EditText usertxt = (EditText)findViewById(R.id.usrTxt);
-        EditText passtxt = (EditText)findViewById(R.id.pwdTxt);
-        Button loginBtn = (Button) findViewById(R.id.btnLogin);
+        setContentView(R.layout.activity_query);
         try {
 
             URL url = new URL("https://api.nal.usda.gov/ndb/V2/reports?ndbno=01009&type=f&format=json&api_key=DEMO_KEY");
@@ -53,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
 
         }
+
+    }
     }
 
-
-}
